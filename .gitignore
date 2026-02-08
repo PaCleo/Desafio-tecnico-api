@@ -1,0 +1,8 @@
+.env
+vendor/
+database.sqlite
+ids.txt
+*.log
+.DS_Store
+.idea/
+.vscode/

@@ -1,0 +1,85 @@
+openapi: 3.0.0
+info:
+  title: Desafio Sicredi API
+  description: API para gestão de associados com autenticação JWT.
+  version: 1.0.0
+servers:
+  - url: http://localhost:8000
+    description: Servidor Local
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+security:
+  - bearerAuth: []
+paths:
+  /login:
+    post:
+      summary: Realiza login
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '200':
+          description: Sucesso (Retorna Token)
+  /register:
+    post:
+      summary: Registra novo usuário
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name: 
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '201':
+          description: Criado com sucesso
+  /api/associados:
+    get:
+      summary: Lista associados
+      responses:
+        '200':
+          description: Lista de associados
+    post:
+      summary: Cria associado
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nome:
+                  type: string
+                cpf:
+                  type: string
+                email:
+                  type: string
+                telefone:
+                  type: string
+                cidade:
+                  type: string
+                estado:
+                  type: string
+      responses:
+        '201':
+          description: Associado criado
