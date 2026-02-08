@@ -63,6 +63,11 @@ class AssociadoController
             return $response->withHeader('Content-Type', 'application/json')->withStatus(400);
         }
 
+        if (Associado::where('cpf', $data['cpf'])->exists()) {
+            $response->getBody()->write(json_encode(['error' => 'CPF already exists']));
+            return $response->withHeader('Content-Type', 'application/json')->withStatus(400);
+        }
+
         try {
             $associado = Associado::create($data);
             $response->getBody()->write($associado->toJson());
